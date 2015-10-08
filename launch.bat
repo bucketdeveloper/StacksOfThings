@@ -1,0 +1,1 @@
+java -jar ./target/sot-2.0-SNAPSHOT.jar server ./src/main/resources/sot.yml

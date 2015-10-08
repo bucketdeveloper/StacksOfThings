@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Stack of Things - Admin</h1>
+<!-- Include one of jTable styles. -->
+<link href="/sot/js/jtable/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+<!-- Include jTable script file. -->
+<script src="/sot/js/jquery-1.11.3.js" type="text/javascript"></script>
+<script src="/sot/js/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/sot/js/jtable/jquery.jtable.min.js" type="text/javascript"></script>   
+        
+<div id="ThingTable"></div>
+<button type="submit" id="loadThings">Load</button>
+<link rel="stylesheet" type="text/css" href="/sot/css/sot.css" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#ThingTable').jtable({
+            title: 'Thing List',
+            paging: true, 
+            pageSize: 20,
+            sorting: true, 
+            defaultSorting: 'Thing Name ASC', 
+            actions: {
+                listAction: '/form/list',
+                createAction: '/form/create',
+                updateAction: '/form/update',
+                deleteAction: '/form/delete'
+            },
+            fields: {
+                id: {
+                    key: true,
+                    list: true
+                },
+                name: {
+                    title: 'Thing Name',
+                    width: '10%'
+                },
+                pluralName: {
+                    title: 'Plural Name',
+                    width: '10%'
+                },
+                height: {
+                    title: 'Height',
+                    width: '6%'
+                },
+                width: {
+                    title: 'Width',
+                    width: '6%'
+                },
+                length: {
+                    title: 'Length',
+                    width: '6%'
+                },
+                weight: {
+                    title: 'Weight',
+                    width: '6%'
+                },
+                radius: {
+                    title: 'Radius',
+                    width: '1%'
+                },
+                volume: {
+                    title: 'Volume',
+                    width: '6%'
+                },
+                originalPrice: {
+                    title: 'Orig. Price',
+                    width: '5%'
+                },
+                currentPrice: {
+                    title: 'Curr. Price',
+                    width: '5%'
+                },
+                year: {
+                    title: 'Year',
+                    width: '5%'
+                },
+                description: {
+                    title: 'Description',
+                    width: '5%'
+                },
+                nsfw: {
+                    title: 'nsfw',
+                    width: '5%'
+                },
+                imageUrl: {
+                    title: 'Image URL',
+                    width: '5%'
+                },
+                createDate: {
+                    title: 'Record date',
+                    width: '5%',
+                    type: 'date',
+                    create: false,
+                    edit: false
+                }
+            }
+        });
+    });
+
+    $("#loadThings").bind("click", function() {
+        $('#ThingTable').jtable('load');
+    });
+
+</script>
+</body>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Stacks of Things</title>
+</head>
+</html>

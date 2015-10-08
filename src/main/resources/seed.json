@@ -1,0 +1,14 @@
+{
+"height":10.42,
+"length":20.4,
+"weight":30.54,
+"width":40.6,
+"volume":50.2688,
+"originalPrice":60.0,
+"currentPrice":70.0,
+"year":1975,
+"imageUrl":null,
+"name":"A Test Entity",
+"description":"The Testiest!",
+"nsfw":0
+}

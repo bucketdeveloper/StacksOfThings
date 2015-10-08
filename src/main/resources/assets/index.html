@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="/sot/css/sot.css" />
+<title>StacksOfThings.com</title>
+<meta name="description" content="Stack of Things - Measure Up">
+</head>
+<body>
+
+<script src="/sot/js/jquery-1.11.3.js" type="text/javascript"></script>
+<script src="/sot/js/jquery.number.min.js" type="text/javascript"></script>
+<script src="/sot/js/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/sot/js/jquery.flip.min.js" type="text/javascript"></script>
+<script src="/sot/js/sot.js" type="text/javascript"></script>
+        
+    <div id="header" class="header">
+        <img src="/sot/images/sot_logo.png" border="0"/>
+        <div id="nsfw" class="nsfw">SFW</div>
+    </div>
+    <div id="boundary" class="boundary"></div>
+    <div class="backer" id="backer"><img src="/sot/images/back.png" class="backImg" border="0"/></div>
+    <div class="blended_grid">
+        <div class="getUrlContainer" id="getUrlContainer">URL<input size="50" type="text" class="getUrl" id="getUrl" onclick="this.focus();this.select()" readonly="readonly"/></div>
+        <div class="pageColumnLeft">
+            <div class="thing" id="startThing">
+                <div class="pin" id="thingPin"></div>
+                <div class="thingCenterer">
+                    <div id="thingQty" class="matchQty">
+                    </div> 
+                    <div id="thingImageContainer" class="thingImageContainer">
+
+                    </div> 
+                    <div id="thingTitle" class="thingTitle">Loading</div>
+                    <div id="thingInfo" class="thingInfo">...</div>   
+                    
+                </div>
+            </div>
+        </div>
+        <div class="pageColumnMid">        
+ 
+            <div class="pin" id="comparisonPin"></div>
+
+            <div class="comparison" id="comparison">
+            </div>
+            
+            <div class="spinner" id="spinner">
+                <div id="next" class="next">
+                    <img src="/sot/images/reload.png" class="refreshImg" border="0"/>
+                </div>
+            </div>
+            <div class="swapper" id="swapper">
+                <img src="/sot/images/swap.png" class="swapImg" border="0"/>
+            </div>
+
+        </div>        
+        <div class="pageColumnRight">
+            <div class="thing" id="matchedThing">
+                <div class="pin" id="matchPin"></div>
+                <div class="thingCenterer">
+                    <div id="matchQty" class="matchQty">
+                    </div> 
+                      <div id="matchImageContainer" class="thingImageContainer">
+                    </div> 
+                    <div id="matchTitle" class="thingTitle">Loading</div>
+                    <div id="matchInfo" class="thingInfo">...</div> 
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

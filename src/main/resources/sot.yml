@@ -1,0 +1,61 @@
+server:
+  type: default
+  maxThreads: 1024
+  allowedMethods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - HEAD
+      - OPTIONS
+      - PATCH
+
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+
+    # Overrides the level of com.example.dw.Thing and sets it to DEBUG.
+    "com.sot.thing.*": DEBUG
+
+  appenders:
+    - type: console
+      threshold: INFO
+      target: stderr
+    - type: file
+      # The file to which current statements will be logged.
+      currentLogFilename: ./logs/sot.log
+
+      # When the log file rotates, the archived log will be renamed to this and gzipped. The
+      # %d is replaced with the previous day (yyyy-MM-dd). Custom rolling windows can be created
+      # by passing a SimpleDateFormat-compatible format as an argument: "%d{yyyy-MM-dd-hh}".
+      archivedLogFilenamePattern: ./logs/sot-%d.log.gz
+
+      # The number of archived files to keep.
+      archivedFileCount: 5
+
+      # The timezone used to format dates. HINT: USE THE DEFAULT, UTC.
+      timeZone: UTC
+
+database:
+  # the name of your JDBC driver
+  driverClass: com.mysql.jdbc.Driver
+
+# the JDBC URL
+  url: jdbc:mysql://localhost:3306/things
+
+  # the username
+  user: stacker
+
+  # the password
+  password: password
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+#    hibernate.dialect: org.hibernate.dialect.MySQLDialect  #org.hibernate.dialect.MySQL5InnoDBDialect
+#    hibernate.hbm2ddl.auto: create

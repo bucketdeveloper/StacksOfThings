@@ -31,7 +31,7 @@ var overrideVerb = false;
 // pin functionality allows you to keep the thing and/or verb and/or match the same until the pin is cleared
 var pinThing = false;
 var pinMatch = false;
-var pinComparison = false;
+var pinComparison = false; 
 
     
 // tId - Thing ID. The ID of the left-half thing
@@ -347,6 +347,40 @@ $(document).ready(function() {
             }
         });
          
+        // handle the key press events
+        // left arrow is back
+        // enter and right arrow are spinner
+        // either up or down arrows is swap
+        // 112 - P
+        // 91 - [
+        // 93 - ]
+        $(document).keypress(function(e) {
+            var key = e.which;
+//            alert("key:"+key);
+            // the enter key code
+            if(key == 13) {
+                $('#spinner').click();
+                return false;  
+            } else if(key == 59) {
+                if (viewedMatchIds.length>1) {
+                    $('#backer').click();
+                }
+                return false;  
+            } else if(key == 39) {
+                $('#swapper').click();
+                return false;  
+            } else if(key == 112) {
+                $('#thingPin').click();
+                return false;  
+            } else if(key == 91) {
+                $('#comparisonPin').click();
+                return false;  
+            } else if(key == 93) {
+                $('#matchPin').click();
+                return false;  
+            }
+        });
+    
         /* the Swap Button event   */ 
         $("#swapper").click(function(){
             if (busy==0) {
@@ -374,8 +408,7 @@ $(document).ready(function() {
                 });
             }
         });         
-    
-    
+      
         /* The Back Button */
         $("#backer").click(function(){
             if (busy==0) {
@@ -446,8 +479,7 @@ $(document).ready(function() {
                 $("#nsfw").empty();
                 $("#nsfw").append("SFW");                              
             }
-        });
-
+        }); 
 });
 
 

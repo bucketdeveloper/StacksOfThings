@@ -279,7 +279,7 @@ public class TheQuantificator {
 
         FillQty fillQty = new FillQty();
         if (dividee == 0) {
-            fillQty.setQtyString("X / 0 = :-(");
+            fillQty.setQtyString("0");
             fillQty.setQtyNumeric(new BigDecimal(0.0));
         } else if (divider == 0) {
             fillQty.setQtyString("Absolutely Zero");

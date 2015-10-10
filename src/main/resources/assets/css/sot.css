@@ -318,7 +318,7 @@ cursor: pointer;
     float: left;
     top: 7px; 
     left: 1%;
-    height: 34px;
+    height: 40px;
     width: 6%;
     background: rgba(255, 255, 255, 0.19);
     border: 2px solid #DDDDDD;
@@ -336,7 +336,7 @@ cursor: pointer;
 }
 
 .backerClicked {
-    background: rgba(100, 120, 217, 0.48)    
+    background: rgba(226, 199, 102, 0.19);
 }
 
 .backImg {
@@ -344,7 +344,7 @@ cursor: pointer;
     right: 1%;
     position: relative;
     /* height: 60%; */
-    bottom: 35%;
+    bottom: 20%;
     /* padding: 0px 0px 0px 0px; */
 }
 
@@ -397,8 +397,6 @@ cursor: pointer;
     margin-left: 10px;
     border-radius: 4px;
 }
-
-
 
 .blended_grid{
     display : block;

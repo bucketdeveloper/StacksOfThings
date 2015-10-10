@@ -154,23 +154,23 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
             switch(verb) {
                 // As Tall As    
                 case "ATA":
-                    $("#thingInfo").text(getFriendlyNumber(result.thing.height)+" \" Tall");
-                    $("#matchInfo").text(getFriendlyNumber(result.random.height)+" \" Tall");
+                    $("#thingInfo").text(scaleLinearQty(result.thing.height,"Tall"));
+                    $("#matchInfo").text(scaleLinearQty(result.random.height,"Tall"));
                     break;
                 // As Wide As. 
                 case "AWA":
-                    $("#thingInfo").text(getFriendlyNumber(result.thing.width)+" \" Wide");
-                    $("#matchInfo").text(getFriendlyNumber(result.random.width)+" \" Wide");
+                    $("#thingInfo").text(scaleLinearQty(result.thing.width,"Wide"));
+                    $("#matchInfo").text(scaleLinearQty(result.random.width,"Wide"));
                     break;
                 // As Long As
                 case "ALA":
-                    $("#thingInfo").text(getFriendlyNumber(result.thing.length)+" \" Long");
-                    $("#matchInfo").text(getFriendlyNumber(result.random.length)+" \" Long");
+                    $("#thingInfo").text(scaleLinearQty(result.thing.length,"Long"));
+                    $("#matchInfo").text(scaleLinearQty(result.random.length,"Long"));
                     break;
-                // As High As
+                // As Heavy As
                 case "AHA":
-                    $("#thingInfo").text(getFriendlyNumber(result.thing.weight)+" oz.");
-                    $("#matchInfo").text(getFriendlyNumber(result.random.weight)+" oz.");
+                    $("#thingInfo").text(scaleWeightQty(result.thing.weight));
+                    $("#matchInfo").text(scaleWeightQty(result.random.weight));
                     break;
                 // As Costly As
                 case "ACA":
@@ -179,18 +179,18 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
                     break;
                 // As Radius As? I guess it can be As Round As, since you can get the cicumference from the Radius      
                 case "ARA":
-                    $("#thingInfo").text(getFriendlyNumber(result.thing.radius)+" \"");
-                    $("#matchInfo").text(getFriendlyNumber(result.random.radius)+" \"");
+                    $("#thingInfo").text(scaleLinearQty(result.thing.radius,"Radius"));
+                    $("#matchInfo").text(scaleLinearQty(result.random.radius,"Radius"));
                     break;
                 // As Vluminous As
                 case "AVA":
-                    $("#thingInfo").html(getFriendlyNumber(result.thing.volume)+" in<sup>3</sup>");
-                    $("#matchInfo").html(getFriendlyNumber(result.random.volume)+" in<sup>3</sup>");
+                    $("#thingInfo").html(scaleVolumeQty(result.thing.volume)+" in<sup>3</sup>");
+                    $("#matchInfo").html(scaleVolumeQty(result.random.volume)+" in<sup>3</sup>");
                     break;
                 // Pick Price as default?
                 default:
-                    $("#thingInfo").text("?"+getFriendlyNumber(result.thing.currentPrice));
-                    $("#matchInfo").text("?"+getFriendlyNumber(result.random.currentPrice));
+                    $("#thingInfo").text("?"+getFriendlyNumber(result.thing.currentPrice,verb));
+                    $("#matchInfo").text("?"+getFriendlyNumber(result.random.currentPrice,verb));
                     break;
             }
         },
@@ -215,8 +215,34 @@ function resetButtons() {
 
     
 /*
-    Get the 
+    Choose the right unit for inches/ft/miles
 */
+function scaleLinearQty(number,dimension) {
+    var returnNumber;
+    if (number < 1) {
+        returnNumber = number + " in.";    
+    } else {
+        if (number >= 126720.0) {
+            // give it in miles    
+            returnNumber = $.number(roundVal(parseFloat( number / 63360))) + " mi.";
+        } else if (number >= 36.0) {
+            // give it in feet
+            // if we are under 10 ft, add inches separately
+            if (number < 240.00 && ((number % 12) > 0)) {
+                var inch = number % 12;
+                returnNumber = $.number(roundVal((number - inch)/12)) + " ft, " + Math.round(inch) + " in.";                
+            } else {
+                var num = number/12;
+                returnNumber = $.number(roundVal((number)/12)) + " ft.";
+            }
+        } else {            
+            returnNumber = $.number(number) + " in.";    
+        }
+    }
+    return returnNumber + " " + dimension;
+};
+
+/* just give the formatted number, no adaptation */
 function getFriendlyNumber(number) {
     var returnNumber;
     if (number < 1) {
@@ -226,6 +252,52 @@ function getFriendlyNumber(number) {
     }
     return returnNumber;
 };
+
+/*
+    Choose the right unit for inches/ft/miles
+*/
+function scaleWeightQty(number) {
+    var returnNumber;
+    if (number < 1) {
+        returnNumber = number + " oz.";   
+    } else {
+        if (number >= 48000.0) {
+            // give it in tons    
+            returnNumber = $.number(roundVal(parseFloat( number / 32000))) + " tons"
+        } else if (number >= 32.0) {
+            // give it in pounds
+            // if we are under 20 lbs, add ounces separately
+            if (number < 320.00 && ((number % 16)) > 0) {
+                var ounce = number % 16;
+                returnNumber = $.number(roundVal((number - ounce)/12)) + " lbs., " + Math.round(ounce) + " oz.";                
+            } else {
+                var num = number/16;
+                returnNumber = $.number(roundVal((number)/16)) + " lbs.";
+            }
+        } else {            
+            returnNumber = $.number(number) + " oz.";    
+        }
+    }
+    return returnNumber;
+};
+
+/*
+    Choose the right unit for inches/ft/miles
+*/
+function scaleVolumeQty(number) {
+    var returnNumber;
+    if (number < 1) {
+        returnNumber = number;    
+    } else {
+        returnNumber = $.number(number);    
+    }
+    return returnNumber;
+};
+
+function roundVal(val){
+    var dec = 2,rounded = Math.round(val*Math.pow(10, dec))/ Math.pow(10, dec);
+    return rounded;
+}
     
 $(document).ready(function() {  
   
@@ -413,8 +485,6 @@ $(document).ready(function() {
         $("#backer").click(function(){
             if (busy==0) {
                 busy = 1;
-               $(".backer").stop();
-               $(".backer").effect( "highlight", {color:"rgba(48, 75, 204, 0.75)"}, 50 );
                 // disable the button for a short time
                 $("#backer").prop("disabled",true);
                 $('#backer').addClass("backerClicked");
@@ -479,7 +549,8 @@ $(document).ready(function() {
                 $("#nsfw").empty();
                 $("#nsfw").append("SFW");                              
             }
-        }); 
+        });    
+    
 });
 
 

@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>StacksOfThings.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery-ui.min.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    
+    <div class="container fullWidth">
+      <div class="header">
+        <img class="stackIcon" src="images/sotIcon.png"/>
+        <ul class="nav nav-pills pull-right">
+          <div class="btn btn-success nsfw" id="nsfw">SFW</div>
+        </ul>
+      </div>
+
+      <div class="container fullWidth padded">
+          <div class="row">
+              <div class="backer glyphicon glyphicon-arrow-left" id="backer"></div>
+              <div class="getUrlContainer" id="getUrlContainer">
+                  <input type="text" class="getUrl" id="getUrl" onclick="this.focus();this.select()" readonly="readonly"/>
+                  <span class="getUrlLabel">URL:</span>
+              </div>
+          </div>
+          <div class="container">
+            <div class="col-sm-4 pageColumnLeft card">
+                <div class="thing" id="startThing">
+                    <div class="pin glyphicon glyphicon-pushpin" id="thingPin"></div>
+                    <div class="thingCenterer">
+                        <div id="thingQty" class="matchQty qtyLabel">
+                        </div> 
+                        <div id="thingImageContainer" class="thingImageContainer">
+
+                        </div> 
+                        <div id="thingTitle" class="thingTitle">Loading</div>
+                        <div id="thingInfo" class="thingInfo">...</div>   
+
+                    </div>
+                </div>  
+            </div>
+            <div class="col-sm-3 pageColumnMid control">
+                <div class="pin glyphicon glyphicon-pushpin" id="comparisonPin"></div>
+                <div class="comparison" id="comparison">
+                </div>
+                <div class="container fullWidth">
+                    <div class="controlButton spinner" id="spinner"><span class="glyphicon glyphicon-refresh"></span></div>
+                    <div class="controlButton swapper" id="swapper"><span class="swap-left glyphicon glyphicon-resize-horizontal"></span><span class="swap-top glyphicon glyphicon-resize-vertical"></span></div>
+                </div>
+            </div>
+            <div class="col-sm-4 pageColumnRight card">
+                <div class="thing" id="matchedThing">
+                    <div class="pin glyphicon glyphicon-pushpin" id="matchPin"></div>
+                    <div class="thingCenterer">
+                        <div id="matchQty" class="matchQty qtyLabel">
+                        </div> 
+                          <div id="matchImageContainer" class="thingImageContainer">
+                        </div> 
+                        <div id="matchTitle" class="thingTitle">Loading</div>
+                        <div id="matchInfo" class="thingInfo">...</div> 
+
+                    </div>
+                </div>  
+            </div>
+          </div>
+      </div>
+    </div>
+    
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/sot.js"></script>
+    <script src="scripts/jquery.number.min.js"></script>
+    <script src="scripts/jquery.flip.min.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!--
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+-->
+  </body>
+</html>

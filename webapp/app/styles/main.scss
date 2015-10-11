@@ -1,0 +1,270 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+//  padding-top: 20px;
+//  padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 30px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+//    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.container.fullWidth{
+    width: 100%;
+    padding: 0px;
+}
+.header{
+    width: 100%;
+    height:100px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
+    border-bottom: none;
+    padding:10px;
+}
+img.stackIcon {
+    height: 90px;
+    position: relative;
+    top: -5px;
+}
+#nsfw{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+    top: 17px;
+    right: 10px;
+}
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+input#getUrl {
+    width: 50%;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    background: #F5F5F5;
+    max-width: 415px;
+    min-width: 200px;
+    position: relative;
+    float: right;
+    right: 20px;
+    margin-bottom: 20px;
+}
+.getUrlLabel{
+    float: right;
+    right: 30px;
+    position: Relative;
+    top: 12px;
+    color: #5CAAF2;
+}
+.col-sm-4.card {
+    background: white;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    padding-left: 0px;
+    padding-right:0px;
+    text-align:center;
+    padding-bottom: 25px;
+}
+img#thing_img {
+    width: auto;
+    text-align: center;
+    height: 200px;
+}
+.qtyLabel {
+    width: 100%;
+    height: 50px;
+    color: #fff;
+    background: #5EADF7;
+    text-align: center;
+    line-height: 50px;
+    font-size: 2.2em;
+    border-radius: 4px 4px 0px 0px;
+}
+.pin {
+    position: absolute;
+    left: 5px;
+    color: #fff;
+    font-size: 25px;
+    top: 12px;
+}
+.pin.active{
+    color: #FF574B;
+}
+.pin:hover{
+    cursor: pointer;
+}
+.control .pin{
+    color: #5EADF7;
+}
+.control .pin.active{
+    color: #FF574B;
+}
+.control{
+    margin: 10px;
+}
+.thingImageContainer{
+    margin-top:25px;
+}
+.thingTitle{
+    margin-top:30px;
+    font-size: 20px;
+}
+.thingInfo{
+}
+#nsfw.active{
+    background: #FF574B;
+    border-color: #FF574B;
+}
+.compText{
+    margin-top:40px;
+}
+.compT{
+    font-size:18px;
+    display: block;
+    text-align:center;
+}
+.compT2 {
+    font-weight: bold;
+    color: #5EADF7;
+    font-size: 30px;
+}
+.controlButton{
+    text-align:center;
+    font-size: 30px;
+}
+div#spinner {
+    background: #5EADF7;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    width: 58px;
+    border-radius: 35px;
+    line-height: 43px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: Center;
+}
+div#swapper {
+    background: #5cb85c;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    width: 53px;
+    border-radius: 5px;
+    line-height: 33px;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: Center;
+}
+.swap-left{
+    display: inline-block;
+}
+.swap-top{
+    display:none;
+}
+#backer {
+    position: relative;
+    float: left;
+    background: #5EADF7;
+    color: #fff;
+    top: -6px;
+    left: 10px;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 4px;
+}
+@media all and (max-width: 751px) {
+    .swap-left {
+        display: none !important;
+    }
+    .swap-top{
+        display: inline-block !important;
+    }
+    
+}

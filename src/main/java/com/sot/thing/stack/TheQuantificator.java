@@ -1,12 +1,15 @@
 package com.sot.thing.stack;
 
 import com.sot.thing.Thing;
-import org.apache.commons.math.fraction.BigFraction;
+
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -71,21 +74,56 @@ public class TheQuantificator {
     }
 
     public static String createFractionString(BigDecimal decimal) {
-        String fraction = "";
-        int exponent = decimal.precision() - decimal.scale() - 1;
-        if (exponent < 0) {
-            // denominator
-            BigDecimal d = new BigDecimal(Math.pow(10,Math.abs(exponent)));
-            // numerator
-            String n = decimal.toString().charAt(0)+"";
-            DecimalFormat formatter = new DecimalFormat("#,###");
-            String returnVal = formatter.format(d);
-            if (n.equals("0")) { n = "1"; }
-            fraction = "<sup>"+n+"</sup>&frasl;<sub>"+returnVal+"</sub>";
-            //
+        double x = decimal.doubleValue();
+        double tolerance = 1.0E-6;
+        double num1=1;
+        double num2=0;
+        double den1=0;
+        double den2=1;
+        double b = x;
+        do {
+            double a = Math.floor(b);
+            double aux = num1;
+            num1 = a*num1+num2;
+            num2 = aux;
+            aux = den1;
+            den1 = a*den1+den2;
+            den2 = aux;
+            b = 1/(b-a);
+        } while (Math.abs(x-num1/den1) > x*tolerance);
+
+        long denominator = (long)den1;
+        // now round off the denominator to have 2 significant digits
+        // it is possible to have run into a non-one numerator, so we will revisit
+        if (num1 > 1) {
+            // for the denominator down by rounding
+            denominator = Double.valueOf(denominator / num1).longValue();
+            num1 = 1;
         }
-        return fraction;
+
+        // we know it to be non-zero
+        if (denominator > 100) {
+            // figure out hot many places it has
+            int oom = Long.toString(denominator).length();
+            // we pick more significant figures for larger numbers
+            if (denominator >= 10000) {
+                oom = 3;
+            } else {
+                oom = oom - 2;
+            }
+
+            long power = Double.valueOf(Math.pow(10,oom)).longValue();
+            double scaled = (double)denominator / power;
+            scaled = Math.round(scaled);
+            denominator = Double.valueOf(scaled*power).longValue();
+        }
+
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String denom = formatter.format(denominator);
+        return "<sup>"+(int)num1+"</sup>&frasl;<sub>"+denom+"</sub>";
     }
+
+
 
     protected static String getFriendlyFractionString(BigDecimal decimal) {
         // get the components of the number

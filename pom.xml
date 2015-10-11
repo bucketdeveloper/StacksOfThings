@@ -166,6 +166,11 @@
             <artifactId>stringtemplate</artifactId>
             <version>2.3b6</version> <!-- I am not sure if this specific version is meant to be used though -->
         </dependency>
+        <dependency>
+            <groupId>backport-util-concurrent</groupId>
+            <artifactId>backport-util-concurrent</artifactId>
+            <version>2.1</version>
+        </dependency>
 
     </dependencies>
 

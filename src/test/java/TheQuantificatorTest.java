@@ -56,16 +56,30 @@ public class TheQuantificatorTest {
     @Test
     public void getFillQty_small() {
 //
-        String fraction = TheQuantificator.createFractionString(new BigDecimal(3.0239699999544902222242448790122557831550108E-7));
-        assertEquals(fraction,"<sup>3</sup>&frasl;<sub>10,000,000</sub>");
-
         String value = TheQuantificator.getFillQty(0.026,12.77).getQtyString();
-        assertEquals(value,"<sup>1</sup>&frasl;<sub>1,000</sub>");
+        assertEquals(value,"<sup>1</sup>&frasl;<sub>490</sub>");
 
         // , 6.0
         value = TheQuantificator.getFillQty(0.75,6.0).getQtyString();
         assertEquals(value,"0.1");
+    }
 
+    @Test
+    public void getFractions() {
+        // 2.752729771373149E-6
+        String fraction = TheQuantificator.createFractionString(new BigDecimal(2.752729771373149E-6));
+        assertEquals(fraction,"<sup>1</sup>&frasl;<sub>363,000</sub>");
+
+        // 8573.553719008265
+        fraction = TheQuantificator.createFractionString(new BigDecimal(1.1663774821669558E-4));
+        assertEquals(fraction,"<sup>1</sup>&frasl;<sub>8,600</sub>");
+
+        //0.0012393162393162392
+        fraction = TheQuantificator.createFractionString(new BigDecimal(0.0012393162393162392));
+        assertEquals(fraction,"<sup>1</sup>&frasl;<sub>810</sub>");
+
+        fraction = TheQuantificator.createFractionString(new BigDecimal(3.0239699999544902222242448790122557831550108E-7));
+        assertEquals(fraction,"<sup>1</sup>&frasl;<sub>3,307,000</sub>");
     }
 
     @Test
@@ -74,5 +88,10 @@ public class TheQuantificatorTest {
         assertEquals(value,"89,260,611,686");
     }
 
-
+    @Test
+    public void testSmallFraction() {
+//        String value = TheQuantificator.createFractionString(new BigDecimal(0.002564102564102564));
+        String value = TheQuantificator.createFractionString(new BigDecimal(0.002564102564102564));
+        assertEquals(value,"<sup>1</sup>&frasl;<sub>390</sub>");
+    }
 }

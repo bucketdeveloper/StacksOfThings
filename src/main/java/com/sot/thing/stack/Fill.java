@@ -14,16 +14,18 @@ public class Fill {
     private Thing random;
     private String matchQty;
     private String thingQty;
+    private double thingQtyNumeric;
     private double matchQtyNumeric;
     private String verb;
     private int nsfw;
 
-    public Fill(Thing thing, Thing random, String matchQty, double matchQtyNumeric, String thingQty, String verb, int nsfw) {
+    public Fill(Thing thing, Thing random, String matchQty, double matchQtyNumeric, String thingQty, double thingQtyNumeric, String verb, int nsfw) {
         this.thing = thing;
         this.random = random;
         this.matchQty = matchQty;
         this.matchQtyNumeric = matchQtyNumeric;
         this.thingQty = thingQty;
+        this.thingQtyNumeric = thingQtyNumeric;
         this.verb = verb;
         this.nsfw = nsfw;
     }
@@ -93,4 +95,10 @@ public class Fill {
 
     @JsonProperty
     public void setMatchQtyNumeric(double matchQtyNumeric) { this.matchQtyNumeric = matchQtyNumeric; }
+
+    @JsonProperty
+    public double getThingQtyNumeric() { return thingQtyNumeric; }
+
+    @JsonProperty
+    public void setThingQtyNumeric(double thingQtyNumeric) { this.thingQtyNumeric = thingQtyNumeric; }
 }

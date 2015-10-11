@@ -150,7 +150,7 @@ public class StackResource {
         }
 
         DecimalFormat formatter = new DecimalFormat("#,###");
-        Fill fill = new Fill(thing,match,matchQty.getQtyString(), matchQty.getQtyNumeric().doubleValue(),formatter.format(thingQty),verb,nsfw);
+        Fill fill = new Fill(thing,match,matchQty.getQtyString(), matchQty.getQtyNumeric().doubleValue(),formatter.format(thingQty),thingQty,verb,nsfw);
         FillRecord record = new FillRecord(fill);
         dao.insertFillRecord(record);
         return fill;

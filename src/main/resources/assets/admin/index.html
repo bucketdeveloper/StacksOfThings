@@ -18,7 +18,7 @@
         $('#ThingTable').jtable({
             title: 'Thing List',
             paging: true, 
-            pageSize: 20,
+            pageSize: 100,
             sorting: true, 
             defaultSorting: 'Thing Name ASC', 
             actions: {
@@ -103,7 +103,11 @@
         $('#ThingTable').jtable('load');
     });
 
-</script>
+    $(document).ready(function () {
+        // seed the data
+        $('#ThingTable').jtable('load');        
+    });
+    </script>
 </body>
 <head lang="en">
     <meta charset="UTF-8">

@@ -85,7 +85,7 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
     mId = (mId != undefined) ? mId : 0; 
     v = (v != undefined) ? v : "ATA"; 
 
-    var urlString = "http://localhost:8080/stack/fill?x="+tId+"&v="+v+"&nsfw="+nsfw+"&m="+mId+"&q="+thingQty+viewedMatchIdsVar; 
+    var urlString = "http://www.stacksofthings.com/stack/fill?x="+tId+"&v="+v+"&nsfw="+nsfw+"&m="+mId+"&q="+thingQty+viewedMatchIdsVar; 
 
     // the ajax call
     $.ajax({

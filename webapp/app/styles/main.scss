@@ -159,6 +159,7 @@ img#thing_img {
     width: auto;
     text-align: center;
     height: 200px;
+    max-width: 90%;
 }
 .qtyLabel {
     width: 100%;
@@ -233,6 +234,7 @@ div#spinner {
     margin: 0 auto;
     margin-top: 20px;
     text-align: Center;
+    cursor: pointer;
 }
 div#swapper {
     background: #5cb85c;
@@ -245,6 +247,7 @@ div#swapper {
     margin: 0 auto;
     margin-top: 20px;
     text-align: Center;
+    cursor: pointer;
 }
 .swap-left{
     display: inline-block;
@@ -262,6 +265,7 @@ div#swapper {
     padding: 10px;
     font-size: 30px;
     border-radius: 4px;
+    cursor: pointer;
 }
 @media all and (max-width: 751px) {
     .swap-left {

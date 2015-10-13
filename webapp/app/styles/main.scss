@@ -160,6 +160,7 @@ img#thing_img {
     text-align: center;
     height: 200px;
     max-width: 90%;
+    border-radius:6px;
 }
 .qtyLabel {
     width: 100%;
@@ -169,7 +170,7 @@ img#thing_img {
     text-align: center;
     line-height: 50px;
     font-size: 2.2em;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 8px 8px 0px 0px;
 }
 .pin {
     position: absolute;

@@ -412,6 +412,11 @@ $(document).ready(function() {
                 $('.thing').slideToggle(200, 'linear', function() {
                     //callback function after animation finished
                     if (count == 0) {
+                        // we chain the matches, so the match becomes the thing
+                        if (!pinThing && !pinMatch) {
+                            overrideThing = true;
+                            thingId = matchId;
+                        }
                         updateStack(thingId,verb,nsfw,thingQty,matchId,0);
                         count++;    
                     }

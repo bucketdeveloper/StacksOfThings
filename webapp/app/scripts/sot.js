@@ -4,7 +4,7 @@ var thingId;
 // The TLA comparison verb
 var verb;
 // the legal verb values
-var verbs = ['ATA','AHA','AWA','ALA','ACA','AVA'];
+var verbs = ['ATA','AHA','AWA','ALA','AVA'];
 var verbHTML = {
     'ATA':["is as", "tall", "as"],
     'AHA': ["weighs", "as much", "as"],
@@ -25,6 +25,9 @@ var matchId;
 var back = 0;
 // busy flag
 var busy = 0;
+// the current Thing & Match, just a JSON structure from the ajax return
+var currentThing;
+var currentMatch;
 
 // the thingIds is passed to the server to prevent duplicate results cick over click
 var viewedThingIds = [];
@@ -42,10 +45,9 @@ var overrideVerb = false;
 var pinThing = false;
 var pinMatch = false;
 var pinComparison = false; 
-
     
 // tId - Thing ID. The ID of the left-half thing
-// v - The verb in use, see @verbs for the 
+// v - The verb in use, see @verbs for the definitions
 // nsfw - A 1 if you are including nsfw results
 // thingQty - the quantity of the left-side Thing
 // mId - The ID of the matched Thing
@@ -53,7 +55,7 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
     // process overrides & pins
     if (!pinThing && !overrideThing) { tId = thingId = 0; }
     if (!pinMatch && !overrideMatch) { mId = matchId = 0; }
-    if (!pinComparison && !overrideVerb) { v = verbs[Math.floor(Math.random()*verbs.length)]; }        
+    if (!pinComparison && !overrideVerb) { v = chooseVerb(v); }        
 
     //always clear overrides, they are by definition one-shot. Pins are for multiple calls. 
     overrideVerb = overrideMatch = overrideThing = false;
@@ -85,7 +87,8 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
     mId = (mId != undefined) ? mId : 0; 
     v = (v != undefined) ? v : "ATA"; 
 
-    var urlString = "http://www.stacksofthings.com/stack/fill?x="+tId+"&v="+v+"&nsfw="+nsfw+"&m="+mId+"&q="+thingQty+viewedMatchIdsVar; 
+//    var urlString = "http://www.stacksofthings.com/stack/fill?x="+tId+"&v="+v+"&nsfw="+nsfw+"&m="+mId+"&q="+thingQty+viewedMatchIdsVar; 
+    var urlString = "http://localhost:8080/stack/fill?x="+tId+"&v="+v+"&nsfw="+nsfw+"&m="+mId+"&q="+thingQty+viewedMatchIdsVar; 
 
     // the ajax call
     $.ajax({
@@ -97,21 +100,24 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
             matchId = result.random.id;
             
             // update the url field
-            $("#getUrl").val("http://www.stacksofthings.com/?x="+thingId+"&v="+v+"&nsfw="+nsfw+"&m="+matchId);
+//            $("#getUrl").val("http://www.stacksofthings.com/?x="+thingId+"&v="+v+"&nsfw="+nsfw+"&m="+matchId);
+            $("#getUrl").val("http://localhost:8080/sot/index.html?x="+thingId+"&v="+v+"&nsfw="+nsfw+"&m="+matchId);
 
             // add this one to the stack
             viewedMatchIds.push(result.random.id);
             viewedThingIds.push(thingId);
             viewedVerbs.push(v);
 
-            
+            // update the currentThing with the one that came back in the call
+            currentThing = result.thing;
+            currentMatch = result.random;
+                       
             // make sure there are no buttons if there is no back string
             if (viewedMatchIds.length>1){
                 $("#backer").css("visibility", "visible");  
             } else {
                 $("#backer").css("visibility", "hidden");              
             }
-            
             
             // we should only keep 10 results
             if (viewedThingIds.length>10) { 
@@ -127,7 +133,6 @@ function updateStack(tId,v,nsfw,thingQty,mId,back) {
             } else {
                 $("#thingTitle").text(result.thing.name);
             }
-
 
             // The two images
             $("#thingImageContainer").empty();
@@ -222,6 +227,27 @@ function resetButtons() {
     }, 10);
 }
 
+
+/*
+    Make sure that we pick a verb that will compare to a non-zero value on our thing
+*/
+function chooseVerb(v) {
+    /* If we are non-null, use the returned Thing */
+    if (currentThing) {
+        var goodVerbs = [];
+        // create a list of the verbs that correspond to attributes that are non-zero  
+        if (currentThing.height > 0) { goodVerbs.push("ATA"); }
+        if (currentThing.width > 0) { goodVerbs.push("AWA"); }
+        if (currentThing.currentPrice > 0) { goodVerbs.push("ACA"); }
+        if (currentThing.length > 0) { goodVerbs.push("ALA"); }
+        if (currentThing.weight > 0) { goodVerbs.push("AHA"); }
+        if (currentThing.volume > 0) { goodVerbs.push("AVA"); }
+        if (currentThing.radius > 0) { goodVerbs.push("ARA"); }
+        return goodVerbs[Math.floor(Math.random()*goodVerbs.length)];        
+    } else {
+        return v;
+    }
+}
     
 /*
     Choose the right unit for inches/ft/miles
@@ -416,6 +442,7 @@ $(document).ready(function() {
                         if (!pinThing && !pinMatch) {
                             overrideThing = true;
                             thingId = matchId;
+                            currentThing = currentMatch;
                         }
                         updateStack(thingId,verb,nsfw,thingQty,matchId,0);
                         count++;    
